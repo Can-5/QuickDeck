@@ -198,7 +198,7 @@ fn collect_lnk(dir: &Path, depth: u32, out: &mut Vec<AppEntry>, seen: &mut std::
 #[cfg(target_os = "macos")]
 pub fn discover_apps() -> Vec<AppEntry> {
     let mut roots: Vec<PathBuf> = vec![PathBuf::from("/Applications")];
-    if let Ok(home) = std::env::var_os("HOME") {
+    if let Some(home) = std::env::var_os("HOME") {
         roots.push(PathBuf::from(&home).join("Applications"));
     }
     let mut out = Vec::new();
